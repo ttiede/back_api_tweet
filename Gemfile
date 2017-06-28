@@ -49,6 +49,10 @@ group :development do
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'webmock'
+  gem 'simplecov', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
