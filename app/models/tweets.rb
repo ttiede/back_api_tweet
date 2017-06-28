@@ -6,4 +6,13 @@ class Tweets
     @all_tweets = TweetsService.new.list
   end
 
+  def filter
+    @all_tweets['statuses'].each do |tweet|
+      tweet['entities']['user_mentions'].each do |mention|
+      	next unless mention['id'] == 42
+      	@valid_tweets << tweet(tweet) unless tweet['in_reply_to_user_id'] == 42
+      end
+    end
+  end
+
 end
