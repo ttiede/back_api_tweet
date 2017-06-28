@@ -19,4 +19,9 @@ class Tweets
     end
   end
 
+  protected
+
+  def tweet(tweet)
+    Tweet.new(screen_name: tweet['user']['screen_name'])
+  end
 end
