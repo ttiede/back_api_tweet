@@ -24,6 +24,10 @@ class Tweets
       [tweet.followers_count, tweet.retweet_count, tweet.favourites_count]
     end.reverse
   end
+
+  def most_mentions
+    @valid_tweets.group_by(&:screen_name)
+  end
   
   protected
 
