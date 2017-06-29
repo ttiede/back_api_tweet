@@ -4,6 +4,8 @@ class Tweets
 
   def initialize
     @all_tweets = TweetsService.new.list
+
+    @valid_tweets = []
   end
 
   def filter
