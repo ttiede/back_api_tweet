@@ -2,8 +2,8 @@
 class Tweets
   attr_reader :all_tweets, :valid_tweets
 
-  def initialize
-    @all_tweets = TweetsService.new.list
+  def initialize(tweets)
+    @all_tweets = tweets
 
     @valid_tweets = []
   end
@@ -30,11 +30,11 @@ class Tweets
   def most_mentions
     @valid_tweets.group_by(&:screen_name)
   end
-  
+
   protected
 
   def tweet(tweet)
-        Tweet.new(screen_name: tweet['user']['screen_name'].humanize,
+    Tweet.new(screen_name: tweet['user']['screen_name'],
               followers_count: tweet['user']['followers_count'],
               retweet_count: tweet['retweet_count'],
               favourites_count: tweet['favourites_count'],
