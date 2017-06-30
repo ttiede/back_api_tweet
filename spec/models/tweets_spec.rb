@@ -10,14 +10,14 @@ RSpec.describe Tweets, type: :model do
 
   describe '.initialize' do
     it 'instance a valid Tweets' do
-      @tweets = Tweets.new
+      @tweets = Tweets.new(TweetsService.new.list)
       expect(@tweets.all_tweets).not_to be_empty
     end
   end
 
   describe '.filter' do
     it 'filter valid tweets' do
-      @tweets = Tweets.new
+      @tweets = Tweets.new(TweetsService.new.list)
       @tweets.filter
       expect(@tweets.valid_tweets).not_to be_empty
       expect(@tweets.valid_tweets).to be_a_kind_of(Array)
@@ -27,7 +27,7 @@ RSpec.describe Tweets, type: :model do
 
   describe '.sorted_by_priority' do
     it 'sort tweets by priority' do
-      @tweets = Tweets.new
+      @tweets = Tweets.new(TweetsService.new.list)
       @tweets.filter
       @tweets.sorted_by_priority
 
@@ -38,7 +38,7 @@ RSpec.describe Tweets, type: :model do
 
   describe '.most_mentions' do
     it 'group tweets by screen_name' do
-      @tweets = Tweets.new
+      @tweets = Tweets.new(TweetsService.new.list)
       @tweets.filter
       @most_mentions = @tweets.most_mentions
       expect(@most_mentions).not_to be_empty
