@@ -1,24 +1,49 @@
-# README
+***Aplicação Backend - Listagem de Tweets***
+=================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+----------
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+----------
+**Dependências**
 
-* Database creation
+----------
 
-* Database initialization
 
-* How to run the test suite
+ - Ruby 2.4.0p0
+ - Rails 5.1.2
+ - Bundler 1.15.1
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+----------
+***Orientações***
 
-* ...
+----------
+
+Antes de executar o backend é necessário instalar as dependências:
+
+ >   bundle install
+
+Para iniciar o  servidor execute o comando:
+
+   >  rails server
+
+Acesso ao callpointers disponibilizado pelo backend:
+
+ - Lista dos tweets por relevância.
+
+`http://localhost:3000/most_relevants`  
+
+ 
+
+- Lista os usuários que mais mencionam a empresa.
+
+`http://localhost:3000/most_mentions`
+
+Testes
+ O comando abaixo executa os testes desenvolvidos:
+
+  >  bundle exec rspec spec
+
