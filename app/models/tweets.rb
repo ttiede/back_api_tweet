@@ -2,8 +2,8 @@
 class Tweets
   attr_reader :all_tweets, :valid_tweets
 
-  def initialize
-    @all_tweets = TweetsService.new.list
+  def initialize(tweets = nil)
+    @all_tweets = tweets
 
     @valid_tweets = []
   end
@@ -11,13 +11,6 @@ class Tweets
   def filter
     @all_tweets['statuses'].each do |tweet|
       list_tweets(tweet)
-    end
-  end
-
-  def list_tweets(tweet)
-    tweet['entities']['user_mentions'].each do |mention|
-      next unless mention['id'] == 42
-      @valid_tweets << tweet(tweet) unless tweet['in_reply_to_user_id'] == 42
     end
   end
 
@@ -30,11 +23,18 @@ class Tweets
   def most_mentions
     @valid_tweets.group_by(&:screen_name)
   end
-  
+
+  def list_tweets(tweet)
+    tweet['entities']['user_mentions'].each do |mention|
+      next unless mention['id'] == 42
+      @valid_tweets << tweet(tweet) unless tweet['in_reply_to_user_id'] == 42
+    end
+  end
+
   protected
 
   def tweet(tweet)
-        Tweet.new(screen_name: tweet['user']['screen_name'].humanize,
+    Tweet.new(screen_name: tweet['user']['screen_name'],
               followers_count: tweet['user']['followers_count'],
               retweet_count: tweet['retweet_count'],
               favourites_count: tweet['favourites_count'],
